@@ -2,14 +2,14 @@ import torch
 from torchvision.transforms import Normalize
 
 
-class ClipMaxDepth(object):
-    # Clip depth values to a maximum of 300 or the 99th percentile
-    def __init__(self, max_depth, clip_percentile=99):
+class DepthNorm(object):
+    # Clip depth values
+    def __init__(self, max_depth, min_depth=1e-6):
+        self.min_depth = min_depth
         self.max_depth = max_depth
 
     def __call__(self, x):
-        # max_depth = min(300, np.percentile(depth_map, 99))
-        return torch.clip(x, 1e-6, self.max_depth)
+        return torch.clip(x, self.min_depth, self.max_depth)
 
 
 class ZScoreNormalization(object):
