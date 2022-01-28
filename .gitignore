@@ -1,0 +1,12 @@
+# Diode Dataset
+diode/
+*.tar.gz
+
+# PyTorch model
+*.pth
+
+# Python
+__pycache__/
+
+# Direnv directory
+.direnv/
